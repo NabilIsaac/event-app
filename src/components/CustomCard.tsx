@@ -13,9 +13,11 @@ const CustomCard: React.FC<CustomCardProps> & {
   </PaperCard>
 );
 
-const CustomCardCover: React.FC<React.ComponentProps<typeof PaperCard.Cover>> = ({ style, ...props }) => (
+const CustomCardCover = ({ style, ...props }: React.ComponentProps<typeof PaperCard.Cover>): JSX.Element => (
   <PaperCard.Cover style={[styles.cover, style]} {...props} />
 );
+
+CustomCardCover.displayName = 'CustomCardCover';
 
 // Attach Card.Content and Card.Cover to CustomCard
 CustomCard.Content = PaperCard.Content;
