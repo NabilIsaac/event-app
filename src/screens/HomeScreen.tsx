@@ -165,7 +165,7 @@ const CityCard = ({ city, onPress }: { city: City; onPress: () => void }) => {
       <View>
         <Image source={{ uri: city.image }} style={styles.cityImage} />
         <View style={styles.cityOverlay}>
-          <Text variant="titleLarge" style={[styles.cityName, { color: theme.colors.onBackground }]}>{city.name}</Text>
+          <Text variant="titleLarge" style={styles.cityName}>{city.name}</Text>
         </View>
       </View>
     </TouchableRipple>
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   location: {
-    marginBottom: 5,
+    // marginBottom: 1,
     fontWeight: '600'
   },
   sectionTitle: {
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   locationContainer: {
-    marginBottom: 16,
+    marginBottom: 5,
   },
   popularEvents: {
     flexDirection: 'row',

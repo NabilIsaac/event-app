@@ -1,13 +1,20 @@
-import React from 'react';
-import { ScrollView, View, StyleSheet, Image, Dimensions, StatusBar } from 'react-native';
-import { Text, Button, IconButton, useTheme } from 'react-native-paper';
-import MapView, { Marker, Region } from 'react-native-maps';
-import { format } from 'date-fns';
-import { RootStackParamList } from '../navigation/AppNavigator';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React from "react";
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  StatusBar,
+} from "react-native";
+import { Text, Button, IconButton, useTheme } from "react-native-paper";
+import MapView, { Marker, Region } from "react-native-maps";
+import { format } from "date-fns";
+import { RootStackParamList } from "../navigation/AppNavigator";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'EventDetails'>;
+type Props = NativeStackScreenProps<RootStackParamList, "EventDetails">;
 
 const INITIAL_REGION: Region = {
   latitude: 34.0522,
@@ -22,14 +29,16 @@ const EventDetailsScreen: React.FC<Props> = ({ route, navigation }) => {
   const theme = useTheme();
 
   React.useEffect(() => {
-    StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content');
+    StatusBar.setBarStyle(theme.dark ? "light-content" : "dark-content");
     return () => {
-      StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content');
+      StatusBar.setBarStyle(theme.dark ? "light-content" : "dark-content");
     };
   }, [theme.dark]);
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <ScrollView bounces={false}>
         <View style={[styles.header, { marginTop: -insets.top }]}>
           <Image source={{ uri: event.imageUrl }} style={styles.coverImage} />
@@ -40,44 +49,71 @@ const EventDetailsScreen: React.FC<Props> = ({ route, navigation }) => {
                 iconColor={theme.colors.onBackground}
                 size={24}
                 onPress={() => navigation.goBack()}
-                style={[styles.backButton, { backgroundColor: theme.colors.background }]}
+                style={[
+                  styles.backButton,
+                  { backgroundColor: theme.colors.background },
+                ]}
               />
+
               <View style={styles.rightButtons}>
                 <IconButton
                   icon="email"
                   iconColor={theme.colors.onSurface}
                   size={24}
                   onPress={() => {}}
-                  style={[styles.actionButton, { backgroundColor: theme.colors.background }]}
+                  style={[
+                    styles.actionButton,
+                    { backgroundColor: theme.colors.background },
+                  ]}
                 />
                 <IconButton
                   icon="share"
                   iconColor={theme.colors.onSurface}
                   size={24}
                   onPress={() => {}}
-                  style={[styles.actionButton, { backgroundColor: theme.colors.background }]}
+                  style={[
+                    styles.actionButton,
+                    { backgroundColor: theme.colors.background },
+                  ]}
                 />
                 <IconButton
                   icon="dots-horizontal"
                   iconColor={theme.colors.onSurface}
                   size={24}
                   onPress={() => {}}
-                  style={[styles.actionButton, { backgroundColor: theme.colors.background }]}
+                  style={[
+                    styles.actionButton,
+                    { backgroundColor: theme.colors.background },
+                  ]}
                 />
               </View>
             </View>
             <View style={styles.headerContent}>
               <View style={styles.organizerInfo}>
-                <Image source={{ uri: event.organizerImage }} style={styles.organizerImage} />
-                <Text variant="titleMedium" style={[styles.organizerText, { color: theme.colors.onBackground }]}>
+                <Image
+                  source={{ uri: event.organizerImage }}
+                  style={styles.organizerImage}
+                />
+                <Text
+                  variant="titleMedium"
+                  style={[
+                    styles.organizerText,
+                  ]}
+                >
                   {event.organizer}
                 </Text>
               </View>
-              <Text variant="headlineLarge" style={[styles.title, { color: theme.colors.onBackground }]}>
+              <Text
+                variant="headlineLarge"
+                style={styles.title}
+              >
                 {event.title}
               </Text>
-              <Text variant="titleMedium" style={[styles.dateTime, { color: theme.colors.onBackground }]}>
-                {format(event.date, 'EEEE, MMMM do')} at {event.time}
+              <Text
+                variant="titleMedium"
+                style={[styles.dateTime]}
+              >
+                {format(event.date, "EEEE, MMMM do")} at {event.time}
               </Text>
             </View>
           </View>
@@ -85,8 +121,22 @@ const EventDetailsScreen: React.FC<Props> = ({ route, navigation }) => {
 
         <View style={styles.content}>
           <View style={styles.locationCard}>
-            <Text variant="titleMedium" style={[styles.locationTitle, { color: theme.colors.onBackground }]}>Location</Text>
-            <Text variant="bodyMedium" style={[styles.locationDetail, { color: theme.colors.onBackground }]}>
+            <Text
+              variant="titleMedium"
+              style={[
+                styles.locationTitle,
+                { color: theme.colors.onBackground },
+              ]}
+            >
+              Location
+            </Text>
+            <Text
+              variant="bodyMedium"
+              style={[
+                styles.locationDetail,
+                { color: theme.colors.onBackground },
+              ]}
+            >
               {event.location}, Los Angeles, CA
             </Text>
             <MapView
@@ -118,38 +168,38 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    height: Dimensions.get('window').height * 0.6,
+    height: Dimensions.get("window").height * 0.6,
   },
   coverImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   headerOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    justifyContent: 'space-between',
+    backgroundColor: "rgba(0,0,0,0.3)",
+    justifyContent: "space-between",
   },
   headerButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     padding: 8,
   },
   backButton: {
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: "rgba(255,255,255,0.3)",
   },
   rightButtons: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   actionButton: {
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: "rgba(255,255,255,0.3)",
     marginLeft: 8,
   },
   headerContent: {
     padding: 20,
   },
   organizerInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 12,
   },
   organizerImage: {
@@ -159,11 +209,14 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   organizerText: {
+    color: "white",
   },
   title: {
     marginBottom: 8,
+    color: "white",
   },
   dateTime: {
+    color: "white",
   },
   content: {
     padding: 20,
@@ -183,7 +236,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   map: {
-    width: '100%',
+    width: "100%",
     height: 150,
     borderRadius: 8,
   },
